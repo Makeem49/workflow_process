@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'process',
     'stages',
     'steps',
-    'grant_access'
+    'grant_access',
+    'django_extensions'
 ]
 
 AUTH_USER_MODEL = "users.User"

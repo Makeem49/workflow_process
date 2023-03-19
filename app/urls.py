@@ -21,6 +21,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('process/', include('process.urls')),
     path('process/<str:process_id>/stages/', include('stages.urls')),
-    path('process/<str:process_id>/stage/<str:stage_id>/actions/', include('steps.urls')),
+    path('process/<str:process_id>/stage/<str:stage_id>/steps/', include('steps.urls')),
     path('grant/', include('grant_access.urls'))
 ]

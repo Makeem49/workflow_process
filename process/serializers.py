@@ -18,13 +18,26 @@ class ProcessSerializer(serializers.ModelSerializer):
     
 class ProcessDetailSerializer(serializers.ModelSerializer):
     stages = serializers.SerializerMethodField(read_only=True)
+    permissions = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Process
-        fields = ['stages']
+        fields = ['stages', 'permissions', 'groups']
 
     def get_stages(self, obj):
         stages = obj.stage_set.all()
         request = self.context.get('request')
         stages = StageSerializer(stages, many=True, context={'request': request}).data
         return stages
+    
+    def get_permissions(self, obj):
+        perms = obj.permissions.all()
+        permsissions = [{permission.id : permission.name} for permission in perms]
+        return permsissions
+    
+    def get_groups(self, obj):
+        groups = obj.groups.all()
+        groups = [{group.id : group.name} for group in groups]
+        return groups
+    
+    
