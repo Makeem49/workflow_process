@@ -34,12 +34,13 @@ class AssignStageSerializer(serializers.ModelSerializer):
         fields = ['name']
 
 
-class GrantGroupSerializer(serializers.Serializer):
+class GrantGroupSerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=True)
+    permissions = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Group
-        fields = ['name', 'permissions']
+        fields = ['id','name', 'permissions']
 
     def create(self, validated_data):
         # permissions_data = validated_data.pop('permissions')
@@ -55,6 +56,12 @@ class GrantGroupSerializer(serializers.Serializer):
         instance.name = validated_data.get('name', instance.name)
         instance.save()
         return instance
+    
+
+    def get_permissions(self, obj):
+        perms = obj.permissions.all()
+        perm_serializer = GrantPermissionSerializer(perms, many=True).data
+        return perm_serializer
     
 
 
