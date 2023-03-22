@@ -19,6 +19,7 @@ class ProcessSerializer(serializers.ModelSerializer):
 class ProcessDetailSerializer(serializers.ModelSerializer):
     stages = serializers.SerializerMethodField(read_only=True)
     permissions = serializers.SerializerMethodField(read_only=True)
+    groups = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Process
@@ -39,5 +40,3 @@ class ProcessDetailSerializer(serializers.ModelSerializer):
         groups = obj.groups.all()
         groups = [{group.id : group.name} for group in groups]
         return groups
-    
-    
