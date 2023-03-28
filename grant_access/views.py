@@ -252,7 +252,7 @@ class RemoveStagePermission(generics.RetrieveUpdateAPIView):
 
 
 class RemoveProcessPermissionView(generics.RetrieveUpdateAPIView):
-    """This view is use to dynamically remove permission to a stage instance"""
+    """This view is use to dynamically remove permission to a process instance"""
     serializer_class = AssignStageSerializer
     queryset = Permission.objects.all()
 
@@ -339,7 +339,7 @@ class RemoveGroupProcessView(generics.RetrieveUpdateAPIView):
         return super().perform_update(serializer)
     
 
-class AssignGroupStageView(generics.RetrieveUpdateAPIView):
+class RemoveGroupStageView(generics.RetrieveUpdateAPIView):
     """This view is used to dynamically add group to a particular instance of a stage"""
     queryset = Group.objects.all()
     serializer_class = GrantGroupSerializer

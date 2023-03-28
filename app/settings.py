@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'stages',
     'steps',
     'grant_access',
+    'actions',
     'django_extensions'
 ]
 

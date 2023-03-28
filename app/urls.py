@@ -22,5 +22,6 @@ urlpatterns = [
     path('process/', include('process.urls')),
     path('process/<str:process_name>/stages/', include('stages.urls')),
     path('process/<str:process_name>/stage/<str:stage_name>/steps/', include('steps.urls')),
-    path('grant/', include('grant_access.urls'))
+    path('grant/', include('grant_access.urls')),
+    path('<str:process_name>/<str:stage_name>/<str:step_name>/create', include('actions.urls'))
 ]
